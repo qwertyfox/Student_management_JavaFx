@@ -1,6 +1,10 @@
 # Student_management_JavaFx
 Desktop UI application using Core Java, JavaFx and FXML. 
 
+### Login
+Username- Admin<br>
+Password- 1234
+
 ## Overall
 
 - Designed using Scene Builder (FXML) instead of Java codes <br>
