@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPaneId" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.DBLocatorController">
+   <children>
+      <Label layoutX="52.0" layoutY="14.0" text="Select Database" />
+       <Label fx:id="labelId" visible="false" layoutX="78.0" layoutY="31.0" prefHeight="17.0" prefWidth="32.0" text="Error" />
+       <Button layoutX="45.0" layoutY="50.0" mnemonicParsing="false" onAction="#locateDb" text="Open Database" />
+   </children>
+</AnchorPane>

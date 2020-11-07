@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainWindowID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+    <top>
+        <MenuBar BorderPane.alignment="TOP_LEFT">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+              <items>
+                <MenuItem onAction="#showNewStudentWindow" mnemonicParsing="false" text="New" />
+                  <SeparatorMenuItem />
+                  <MenuItem mnemonicParsing="false" text="Edit" />
+                  <SeparatorMenuItem />
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+                  <SeparatorMenuItem />
+                  <MenuItem mnemonicParsing="false" text="About" />
+              </items>
+            </Menu>
+         </menus>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></MenuBar>
+    </top>
+
+    <center>
+        <TableView fx:id="tableViewID" prefHeight="301.0" prefWidth="410.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn text="Student ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="student_id" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="First Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn text="Last Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="last_name" />
+                    </cellValueFactory>
+                </TableColumn>
+
+            </columns>
+            <BorderPane.margin>
+                <Insets right="10.0" />
+            </BorderPane.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+        </TableView>
+    </center>
+    <right>
+        <VBox alignment="TOP_CENTER" prefHeight="303.0" prefWidth="170.00" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+            <VBox alignment="CENTER" prefHeight="65.0" prefWidth="170.0">
+               <children>
+                  <TextField fx:id="fNTextFieldId" onAction="#searchStudentFName" onMouseClicked="#clearLNTextField" promptText="Search by first name" />
+                  <TextField fx:id="lNTextFieldId" onAction="#searchStudentLName" onMouseClicked="#clearFNTextField" promptText="Search by last name" />
+               </children>
+            </VBox>
+            <TextArea fx:id="textAreaId" editable="false" prefHeight="76.0" prefWidth="170.0" wrapText="true" />
+                <Button onAction="#loadMainUI" maxWidth="Infinity" mnemonicParsing="false" text="List Students" />
+            <Button onAction="#showCourseSubject" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" text="List Course and Subjects" />
+            </children>
+            <BorderPane.margin>
+                <Insets right="10.0" />
+            </BorderPane.margin>
+        </VBox>
+    </right>
+    <bottom>
+        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+            <ProgressBar fx:id="progressBarId" prefHeight="18.0" prefWidth="217.0" progress="0.0" visible="false" />
+            </children>
+        </HBox>
+    </bottom>
+</BorderPane>

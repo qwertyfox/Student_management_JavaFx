@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane prefHeight="219.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.NewStudentWindowController">
+    <content>
+      <BorderPane prefHeight="340.0" prefWidth="450.0">
+         <center>
+              <GridPane prefHeight="0.0" prefWidth="0.0">
+                  <Label prefHeight="17.0" prefWidth="171.0" text="First name" />
+                  <TextField fx:id="firstNameId" GridPane.columnIndex="1" />
+                  <Label prefHeight="17.0" prefWidth="122.0" text="Last name" GridPane.rowIndex="1" />
+                  <TextField fx:id="lastNameFieldId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label prefHeight="17.0" prefWidth="131.0" text="Contact" GridPane.rowIndex="2" />
+                  <TextField fx:id="contactFieldId" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label prefHeight="17.0" prefWidth="83.0" text="Course" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="datePickerId" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label prefHeight="17.0" prefWidth="130.0" text="Enrollment date" GridPane.rowIndex="4" />
+                  <MenuButton fx:id="menuButtonId" mnemonicParsing="false" prefHeight="25.0" prefWidth="203.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                      <items>
+                          <MenuItem fx:id="BAid" mnemonicParsing="false" onAction="#BAidSelected" text="Bachelors in Accounting" />
+                          <MenuItem fx:id="BITid" mnemonicParsing="false" onAction="#BITidSelected" text="Bachelors in Information Technology" />
+                          <MenuItem fx:id="MAid" mnemonicParsing="false" onAction="#MAidSelected" text="Masters in Accounting" />
+                          <MenuItem fx:id="MITid" mnemonicParsing="false" onAction="#MITidSelected" text="Masters in Information Technology" />
+                      </items>
+                  </MenuButton>
+              </GridPane>
+         </center>
+         <bottom>
+         </bottom>
+      </BorderPane>
+    </content>
+</DialogPane>
