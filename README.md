@@ -15,10 +15,11 @@ Desktop UI application using Core Java, JavaFx and fxml.
 - For instant update in main UI text field, .addListner is used in Tableview (main UI structure)<br>
 - [CourseSubjectsWindow](src/sample/fxml/CourseSubjectsWindow.fxml) is not Modal (does not disable main UI when it is opened)<br>
 - Uses Singleton class for [DAO class](/src/sample/dao/DbAccess.java)<br>
-- Uses Multithreading and TimerTask class to periodically validate conditions<br>
+- Uses Task class to avoid using UI thread and TimerTask class to periodically validate conditions<br>
 - Most SQL queries are seperated and stored in [SQLStatement class](src/sample/dao/SQLStatements.java)<br>
 - Uses PreparedStatement as well as Statement class<br>
 - ResultSet data is combined using "=" and sent to other methods which extracts the data by .split(<em>regex</em> "=") and stores in Array. It is extracted later using <em>ArrayName</em>[<em>element#</em>]<br>
+- For certain insert queries, autocommit is set to false until all conditions are fulfilled <br>
 - Custom Buttons are created and default buttons are set <br> 
 - Delibrate Thread.sleep() enabled to see the progress bar<br>
 - DateTimeFormatter.ofPattern("dd-MM-yyyy") is used to set to Australian date format ;)<br>
