@@ -67,6 +67,7 @@ public class DbAccess {
                 queryDeleteStudent.close();
             }
             if(queryDeleteStudentCourse != null){
+                assert queryDeleteStudent != null;
                 queryDeleteStudent.close();
             }
 
@@ -77,7 +78,8 @@ public class DbAccess {
 
     public List<Student> listStudents() {
         try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(SQLStatements.QUERY_SELECT_EVERYTHING_FROM_STUDENT)) {
+             ResultSet resultSet =
+                     statement.executeQuery(SQLStatements.QUERY_SELECT_EVERYTHING_FROM_STUDENT)) {
 
             List<Student> students = new ArrayList<>();
             while (resultSet.next()) {
@@ -97,7 +99,7 @@ public class DbAccess {
     }
 
     public Student searchStudentFirstName(String name) {
-        String query = "SELECT * FROM Students Where first_name = " + "\"" + name + "\"";
+        String query = "SELECT * FROM Students WHERE first_name = " + "\"" + name + "\"";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
@@ -114,7 +116,7 @@ public class DbAccess {
     }
 
     public Student searchStudentLastName(String name) {
-        String query = "SELECT * FROM Students Where last_name = " + "\"" + name + "\"";
+        String query = "SELECT * FROM Students WHERE last_name = " + "\"" + name + "\"";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
@@ -168,7 +170,8 @@ public class DbAccess {
 
     public List<CourseSubjects> courseSubjects() {
         try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(SQLStatements.QUERY_EVERYTHING_FROM_COURSE_SUBJECT)) {
+             ResultSet resultSet =
+                     statement.executeQuery(SQLStatements.QUERY_EVERYTHING_FROM_COURSE_SUBJECT)) {
             List<CourseSubjects> courseSubjects = new ArrayList<>();
             while (resultSet.next()) {
                 CourseSubjects cs = new CourseSubjects();
@@ -247,7 +250,8 @@ public class DbAccess {
         }
     }
 
-    private void enrollIntoCourse(int studentKey, String courseName, String dateOfEnrollment) throws SQLException {
+    private void enrollIntoCourse(int studentKey, String courseName,
+                                  String dateOfEnrollment) throws SQLException {
 
         queryCourseId.setString(1, courseName);
         ResultSet resultSet = queryCourseId.executeQuery();
@@ -255,7 +259,7 @@ public class DbAccess {
 
         queryInsertIntoStudentCourses.setInt(1, studentKey);
         queryInsertIntoStudentCourses.setInt(2, courseKey);
-        queryInsertIntoStudentCourses.setString(3,dateOfEnrollment);
+        queryInsertIntoStudentCourses.setString(3, dateOfEnrollment);
 
         int affectedRows = queryInsertIntoStudentCourses.executeUpdate();
         if(affectedRows != 1){

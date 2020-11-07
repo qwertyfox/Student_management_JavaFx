@@ -24,25 +24,27 @@ public class DBLocatorController {
     public void locateDb() throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select Database");
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("SQLite Database","*.db"));
+        chooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("SQLite Database", "*.db"));
 
         File file = chooser.showOpenDialog(anchorPaneId.getScene().getWindow());
-            String loc;
-            if(file!= null){
-                loc ="jdbc:sqlite:" +file.getAbsolutePath();
-                Stage primaryStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/fxml/MainWindow.fxml"));
-                Parent root = loader.load();
-                Controller controller = loader.getController();
-                primaryStage.setTitle("Student Database");
-                primaryStage.setScene(new Scene(root, 800, 500));
-                primaryStage.show();
-                DbAccess.getInstance().connectDB(loc);
-                controller.loadMainUI();
-                anchorPaneId.getScene().getWindow().hide();
+        String loc;
 
-            }else {
-                labelId.setVisible(true);
-            }
+        if (file != null) {
+            loc = "jdbc:sqlite:" + file.getAbsolutePath();
+            Stage primaryStage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/fxml/MainWindow.fxml"));
+            Parent root = loader.load();
+            Controller controller = loader.getController();
+            primaryStage.setTitle("Student Database");
+            primaryStage.setScene(new Scene(root, 800, 500));
+            primaryStage.show();
+            DbAccess.getInstance().connectDB(loc);
+            controller.loadMainUI();
+            anchorPaneId.getScene().getWindow().hide();
+
+        } else {
+            labelId.setVisible(true);
+        }
     }
 }
