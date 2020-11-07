@@ -163,7 +163,9 @@ public class Controller {
         System.out.println("Generating report on" + student.getName());
         List<Subject> subjects = DbAccess.getInstance().studentEnrollment(student);
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Report on " + student.getName() + " " + LocalDate.now() + " .doc"))) {
+        try (BufferedWriter bufferedWriter =
+                     new BufferedWriter(new FileWriter("Report on " + student.getName()
+                             + " " + LocalDate.now() + " .doc"))) {
             bufferedWriter.write("Student first name : " + student.getName());
             bufferedWriter.newLine();
             bufferedWriter.write("Student Last name : " + student.getLast_name());
