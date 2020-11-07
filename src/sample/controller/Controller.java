@@ -39,7 +39,6 @@ public class Controller {
     private ContextMenu contextMenu;
 
      public void loadMainUI() {
-        System.out.println("Hello from loadMainUI");
         contextMenu = new ContextMenu();
 
         MenuItem showEnrollment = new MenuItem("Show Enrollment");
@@ -68,12 +67,11 @@ public class Controller {
         Task<ObservableList<Student>> task = new LoadStudents();
         new Thread(task).start();
 
-
-//         tableViewID.setItems((ObservableList<Student>) DbAccess.getInstance().listStudents());
-
+        // Binding data with UI
         tableViewID.itemsProperty().bind(task.valueProperty());
         progressBarId.visibleProperty().bind(task.runningProperty());
         progressBarId.progressProperty().bind(task.progressProperty());
+
         tableViewID.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         tableViewID.getSelectionModel().selectFirst();
 
@@ -146,8 +144,12 @@ public class Controller {
         dialogController.showEnrollment(student);
 
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+
+        // Custom button
         ButtonType reportButton = new ButtonType("Generate Report");
         dialog.getDialogPane().getButtonTypes().add(1, reportButton);
+
+        // Setting default button
         Button defaultButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.CLOSE);
         defaultButton.setDefaultButton(true);
 
@@ -191,8 +193,11 @@ public class Controller {
 
         alert.getButtonTypes().clear();
 
+        // Creating custom button
         ButtonType proceedButton = new ButtonType("Proceed");
         alert.getButtonTypes().addAll(proceedButton, ButtonType.CANCEL);
+
+        // Setting default button
         Button defaultButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
         defaultButton.setDefaultButton(true);
 
@@ -207,6 +212,8 @@ public class Controller {
 
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainWindowID.getScene().getWindow());
+
+        //To set the window non-modal; does not disable the main window
         dialog.initModality(Modality.NONE);
         dialog.setTitle("Course and Subjects");
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -235,7 +242,7 @@ public class Controller {
         dialog.initModality(Modality.NONE);
         dialog.setTitle("Add New Student");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("NewStudentWindow.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/sample/fxml/NewStudentWindow.fxml"));
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
         } catch (IOException e) {
@@ -250,6 +257,10 @@ public class Controller {
 
         NewStudentWindowController controller = fxmlLoader.getController();
         Button proceed = (Button) dialog.getDialogPane().lookupButton(proceedButton);
+
+        // To check if all fields are filled, this timer task refreshes every second
+        // and decides whether to enable or disable the button
+
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -257,7 +268,7 @@ public class Controller {
             }
         };
         Timer timer = new Timer(true);
-        timer.schedule(timerTask,100,1000);
+        timer.schedule(timerTask, 100, 1000);
 
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == proceedButton){
@@ -280,6 +291,8 @@ public class Controller {
 
 }
 
+// This class copies the List of students to FXCollections.observableArrayList()
+// This is done to see the progressbar in main UI, without this the upload is extremely fast
 class LoadStudents extends Task<ObservableList<Student>> {
     @Override
     protected ObservableList<Student> call() throws InterruptedException {
@@ -289,11 +302,11 @@ class LoadStudents extends Task<ObservableList<Student>> {
             updatedStudentList.add(studentList.get(i));
             updateProgress(i + 1, studentList.size());
             Thread.sleep(100);
+            // Thread.sleep to stimulate update and to see the progressbar in the main UI
         }
         return updatedStudentList;
     }
 }
 
 
-//TODO
-//* Update the new student instantly in the table view. Check JavaFx challenge project
+

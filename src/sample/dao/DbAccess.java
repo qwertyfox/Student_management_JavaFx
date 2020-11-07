@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// This is a Singleton class
 public class DbAccess {
 
 
@@ -160,6 +161,10 @@ public class DbAccess {
             String courseName = null;
             while (resultSet.next()) {
                 courseName = resultSet.getString(1) + "=" + resultSet.getString(2);
+
+                // The data (courseName) is later split using "=" and saved in the Array
+                // Array [0] has the course ID where as the Array [1] has the course name
+
             }
             return courseName;
         } catch (SQLException e) {

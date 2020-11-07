@@ -35,7 +35,6 @@ public class NewStudentWindowController {
 
     @FXML
     public void initialize(){
-        System.out.println("Hello");
 
     }
 
@@ -47,8 +46,9 @@ public class NewStudentWindowController {
         LocalDate date = datePickerId.getValue();
 
 
-        String data = firstName+"="+lastName+"="+contact+"="+course+"="+formatter.format(date);
-        System.out.println(data);
+        String data = firstName + "=" + lastName + "=" + contact + "=" + course + "=" + formatter.format(date);
+        // The "=" is later split and saved into an array to get meaningful data
+
         DbAccess.getInstance().newStudent(data);
     }
 
@@ -59,11 +59,15 @@ public class NewStudentWindowController {
         String course = menuButtonId.getText();
         LocalDate date = datePickerId.getValue();
 
+
+        // The following are the conditions to be checked before the insert statement is committed
+        // "Proceed" button is disabled until all information are filled
+
         return firstName.isEmpty() || firstName.trim().isEmpty()
-                 || lastName.isEmpty() || lastName.trim().isEmpty()
-                 || contact.isEmpty() || contact.trim().isEmpty()
-                 || course.isEmpty() || course.trim().isEmpty()
-                 || date == null;
+                || lastName.isEmpty() || lastName.trim().isEmpty()
+                || contact.isEmpty() || contact.trim().isEmpty()
+                || course.isEmpty() || course.trim().isEmpty()
+                || date == null;
     }
 
     public void BAidSelected() {
