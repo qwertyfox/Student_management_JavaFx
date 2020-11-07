@@ -1,5 +1,5 @@
 # Student_management_JavaFx
-Simple UI application using JavaFx from Gluon and fxml
+Desktop UI application using Core Java, JavaFx and fxml. 
 
 ## Overall
 
@@ -11,7 +11,7 @@ Simple UI application using JavaFx from Gluon and fxml
 
 ## Codes
 
-- Context Menu (right mouse click menu) is enabled in main ui using .setrowFactory(...)<br>
+- Context Menu (right mouse click menu) is enabled in main UI using .setrowFactory(...)<br>
 - For instant update in main UI text field, .addListner is used in Tableview (main UI structure)<br>
 - [CourseSubjectsWindow](src/sample/fxml/CourseSubjectsWindow.fxml) is not Modal (does not disable main UI when it is opened)<br>
 - Uses Singleton class for [DAO class](/src/sample/dao/DbAccess.java)<br>
