@@ -1,9 +1,9 @@
 # Student_management_JavaFx
-Desktop UI application using Core Java, JavaFx and fxml. 
+Desktop UI application using Core Java, JavaFx and FXML. 
 
 ## Overall
 
-- Designed using Scene Builder (fxml) instead of Java codes <br>
+- Designed using Scene Builder (FXML) instead of Java codes <br>
 - Uses Sqlite3 as datasource<br>
 - Library path are set in place of Maven Dependencies (being very early project)<br>
 - Creates report in MS Word format<br>
